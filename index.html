@@ -14,6 +14,7 @@ body, html {
         }
         .pdf-container {
             display: flex;
+            flex-direction: column; /* Permet au conteneur de s'adapter à la largeur de l'écran */
             align-items: center;
             justify-content: center;
             height: 100vh; /* Assure que le conteneur occupe toute la hauteur de la vue */
@@ -21,8 +22,7 @@ body, html {
         }
         .pdf-viewer {
             width: 100%; /* Occupe toute la largeur du conteneur */
-            height: auto; /* Ajuste automatiquement la hauteur pour conserver le ratio d'aspect */
-            max-height: none; /* Permet au PDF d'occuper toute la hauteur disponible */
+            height: 100%; /* Occupe toute la hauteur du conteneur */
             border: none; /* Supprime la bordure autour de l'iframe */
         }
     </style>
