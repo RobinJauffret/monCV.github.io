@@ -2,14 +2,14 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>Robin JAUFFRET</title>
 <style>
 body, html {
             margin: 0;
             padding: 0;
             height: 100%;
-            overflow: hidden; /* Empêche le défilement de la page entière */
+            overflow: auto; /* Permet le défilement de la page si nécessaire */
             scroll-behavior: smooth; /* Ajoute une fluidité au défilement */
         }
         .pdf-container {
@@ -18,11 +18,11 @@ body, html {
             align-items: center;
             justify-content: center;
             height: 100vh; /* Assure que le conteneur occupe toute la hauteur de la vue */
-            width: 100vw; /* Assure que le conteneur occupe toute la largeur de la vue */
         }
         .pdf-viewer {
-            width: 100%; /* Occupe toute la largeur du conteneur */
-            height: 100%; /* Occupe toute la hauteur du conteneur */
+            max-width: 100%; /* Occupe au maximum la largeur du conteneur */
+            width: auto; /* Ajuste automatiquement la largeur en fonction du PDF */
+            height: auto; /* Ajuste automatiquement la hauteur pour conserver le ratio d'aspect */
             border: none; /* Supprime la bordure autour de l'iframe */
         }
     </style>
