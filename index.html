@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Robin JAUFFRET</title>
     <style>
         body, html {
@@ -17,10 +17,11 @@
             height: 100%;
         }
         .pdf-viewer {
-            width: 100%;
             max-width: 100%;
             max-height: 100%;
             border: none;
+            width: auto;
+            height: auto;
         }
         @media only screen and (max-width: 600px) {
             .pdf-viewer {
@@ -29,6 +30,15 @@
             }
         }
     </style>
+    <script>
+        function resizeIframe() {
+            var iframe = document.querySelector('.pdf-viewer');
+            iframe.style.width = window.innerWidth + 'px';
+            iframe.style.height = window.innerHeight + 'px';
+        }
+        window.addEventListener('resize', resizeIframe);
+        window.addEventListener('load', resizeIframe);
+    </script>
 </head>
 <body>
     <div class="pdf-container">
