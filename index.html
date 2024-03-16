@@ -2,9 +2,10 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Robin JAUFFRET</title>
     <style>
+        /* Réinitialisation des marges et des paddings pour tout le corps de la page */
         body, html {
             margin: 0;
             padding: 0;
@@ -13,15 +14,16 @@
             scroll-behavior: smooth;
         }
 
+        /* Conteneur pour centrer l'iframe */
         .pdf-container {
             display: flex;
             align-items: center;
             justify-content: center;
             height: 100vh;
             width: 100vw;
-            overflow: auto; /* Permet le défilement fluide */
         }
 
+        /* Styles pour l'iframe contenant le PDF */
         .pdf-viewer {
             width: 100%;
             height: auto;
@@ -31,12 +33,13 @@
             margin: 0;
             padding: 0;
             overflow: hidden;
-            touch-action: auto; /* Permet le défilement fluide sur les appareils tactiles */
         }
     </style>
 </head>
 <body>
+    <!-- Conteneur centré pour l'iframe -->
     <div class="pdf-container">
+        <!-- Iframe contenant le fichier PDF -->
         <iframe src="Jauffret_Robin_CV--.pdf" type="application/pdf" class="pdf-viewer"></iframe>
     </div>
 </body>
