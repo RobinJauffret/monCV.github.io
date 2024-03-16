@@ -1,52 +1,58 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Robin JAUFFRET</title>
-    <style>
-        /* Réinitialisation des marges et des paddings pour tout le corps de la page */
-        body, html {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            overflow: hidden; /* Empêche le défilement de la page entière */
-            scroll-behavior: smooth; /* Ajoute une fluidité au défilement */
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Robin JAUFFRET</title>
+  <style>
+    /* Réinitialisation des marges et des paddings pour tout le corps de la page */
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden; /* Empêche le défilement de la page entière */
+      scroll-behavior: smooth; /* Ajoute une fluidité au défilement */
+    }
 
-        /* Conteneur pour centrer l'iframe */
-        .pdf-container {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100vh; /* Assure que le conteneur occupe toute la hauteur de la vue */
-            width: 100vw; /* Assure que le conteneur occupe toute la largeur de la vue */
-        }
+    /* Conteneur pour centrer l'iframe */
+    .pdf-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh; /* Assure que le conteneur occupe toute la hauteur de la vue */
+      width: 100vw; /* Assure que le conteneur occupe toute la largeur de la vue */
+    }
 
-        /* Styles pour l'iframe contenant le PDF */
-        .pdf-viewer {
-            width: 100%; /* L'iframe s'adapte à 100% de la largeur de son conteneur */
-            height: 100%; /* L'iframe s'adapte à 100% de la hauteur de son conteneur */
-            border: none; /* Supprime la bordure de l'iframe */
-            margin: 0; /* Supprime les marges */
-            padding: 0; /* Supprime les paddings */
-            overflow: hidden; /* Masque le contenu dépassant de l'iframe */
-        }
+    /* Styles pour l'iframe contenant le PDF */
+    .pdf-viewer {
+      width: 100%; /* L'iframe s'adapte à 100% de la largeur de son conteneur */
+      height: 100%; /* L'iframe s'adapte à 100% de la hauteur de son conteneur */
+      border: none; /* Supprime la bordure de l'iframe */
+      margin: 0; /* Supprime les marges */
+      padding: 0; /* Supprime les paddings */
+      overflow: hidden; /* Masque le contenu dépassant de l'iframe */
+    }
 
-        /* Médias queries pour les appareils mobiles */
-        @media screen and (max-width: 768px) {
-            .pdf-viewer {
-                width: 100%;
-                height: 100vh; /* L'iframe s'adapte à 100% de la hauteur de l'écran */
-            }
-        }
-    </style>
+    /* Media query pour les tablettes */
+    @media only screen and (min-width: 768px) and (max-width: 1024px) {
+      .pdf-viewer {
+        /* Styles spécifiques aux tablettes */
+      }
+    }
+
+    /* Media query pour les smartphones */
+    @media only screen and (max-width: 767px) {
+      .pdf-viewer {
+        /* Styles spécifiques aux smartphones */
+      }
+    }
+  </style>
 </head>
 <body>
-    <!-- Conteneur centré pour l'iframe -->
-    <div class="pdf-container">
-        <!-- Iframe contenant le fichier PDF -->
-        <iframe src="Jauffret_Robin_CV--.pdf" type="application/pdf" class="pdf-viewer"></iframe>
-    </div>
+  <!-- Conteneur centré pour l'iframe -->
+  <div class="pdf-container">
+    <!-- Iframe contenant le fichier PDF -->
+    <iframe src="Jauffret_Robin_CV--.pdf" type="application/pdf" class="pdf-viewer"></iframe>
+  </div>
 </body>
 </html>
