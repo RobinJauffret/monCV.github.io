@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Robin JAUFFRET</title>
-    <style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Robin JAUFFRET</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.6.347/pdf.min.js"></script>
+<style>
         body, html {
             margin: 0;
             padding: 0;
@@ -27,17 +28,33 @@
     </style>
 </head>
 <body>
-    <div class="pdf-container">
-        <iframe src="Jauffret_Robin_CV--.pdf" type="application/pdf" class="pdf-viewer" style="height: 100%"></iframe>
-    </div>
-    <script>
-        function adjustIframeHeight() {
-            var iframe = document.querySelector('.pdf-viewer');
-            var windowHeight = window.innerHeight;
-            iframe.style.height = windowHeight + 'px';
-        }
-        window.addEventListener('resize', adjustIframeHeight);
-        window.addEventListener('load', adjustIframeHeight);
+<div class="pdf-container">
+<canvas id="pdf-canvas" class="pdf-viewer"></canvas>
+</div>
+<script>
+// Chargez le PDF
+        pdfjsLib.getDocument('Jauffret_Robin_CV--.pdf').promise.then(function(pdf) {
+            // Obtenez la page
+            const page = pdf.getPage(1);
+
+            const canvas = document.getElementById('pdf-canvas');
+            const context = canvas.getContext('2d');
+
+            const scale = 1.0;
+            const viewport = page.getViewport(scale);
+
+            canvas.width = viewport.width;
+            canvas.height = viewport.height;
+
+            // Dessinez le PDF dans la balise canvas
+            page.render({
+                canvasContext: context,
+                viewport: viewport
+            }).promise.then(function() {
+            // Si le PDF est chargé correctement, on affiche le canvas
+                canvas.style.display = 'block';
+            });
+        });
     </script>
 </body>
 </html>
