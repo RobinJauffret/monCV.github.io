@@ -20,7 +20,8 @@
         }
         .pdf-viewer {
             width: 100%; /* Occupe toute la largeur du conteneur */
-            height: 100%; /* Ajustement pour occuper toute la hauteur */
+            height: auto; /* Ajuste automatiquement la hauteur pour conserver le ratio d'aspect */
+            max-height: 100%; /* Assure que la hauteur n'excède pas la hauteur de la fenêtre */
             border: none; /* Supprime la bordure autour de l'iframe */
         }
     </style>
