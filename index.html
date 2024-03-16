@@ -1,17 +1,20 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Robin JAUFFRET</title>
-<style>
-body, html {
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Robin JAUFFRET</title>
+    <style>
+        /* Réinitialisation des marges et des paddings pour tout le corps de la page */
+        body, html {
             margin: 0;
             padding: 0;
             height: 100%;
             overflow: hidden; /* Empêche le défilement de la page entière */
             scroll-behavior: smooth; /* Ajoute une fluidité au défilement */
         }
+
+        /* Conteneur pour centrer l'iframe */
         .pdf-container {
             display: flex;
             align-items: center;
@@ -19,35 +22,23 @@ body, html {
             height: 100vh; /* Assure que le conteneur occupe toute la hauteur de la vue */
             width: 100vw; /* Assure que le conteneur occupe toute la largeur de la vue */
         }
+
+        /* Styles pour l'iframe contenant le PDF */
         .pdf-viewer {
-            width: 100vw;
-            height: auto;
-            max-height: 100vh;
-            border: none;
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
-        }
-        @media screen and (max-width: 768px) {
-            .pdf-viewer {
-                width: 100vw; /* Ajuste la largeur du PDF sur les appareils mobiles */
-                height: 90vh; /* Ajuste la hauteur du PDF sur les appareils mobiles */
-            }
+            width: 100%; /* L'iframe s'adapte à 100% de la largeur de son conteneur */
+            height: 100%; /* L'iframe s'adapte à 100% de la hauteur de son conteneur */
+            border: none; /* Supprime la bordure de l'iframe */
+            margin: 0; /* Supprime les marges */
+            padding: 0; /* Supprime les paddings */
+            overflow: hidden; /* Masque le contenu dépassant de l'iframe */
         }
     </style>
 </head>
 <body>
-<div class="pdf-container">
-<iframe src="Jauffret_Robin_CV--.pdf" type="application/pdf" class="pdf-viewer" width="100vw" height="100vh"></iframe>
-</div>
-<script>
-function adjustIframeHeight() {
-            var iframe = document.querySelector('.pdf-viewer');
-            var containerHeight = iframe.parentElement.clientHeight;
-            iframe.style.height = containerHeight + 'px';
-        }
-        window.addEventListener('resize', adjustIframeHeight);
-        window.addEventListener('load', adjustIframeHeight);
-    </script>
+    <!-- Conteneur centré pour l'iframe -->
+    <div class="pdf-container">
+        <!-- Iframe contenant le fichier PDF -->
+        <iframe src="Jauffret_Robin_CV--.pdf" type="application/pdf" class="pdf-viewer"></iframe>
+    </div>
 </body>
 </html>
