@@ -2,47 +2,43 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Robin JAUFFRET</title>
     <style>
         body, html {
             margin: 0;
             padding: 0;
             height: 100%;
-            overflow: auto; /* Permet de faire défiler le contenu si nécessaire */
+            overflow: hidden; /* Empêche le défilement de la page entière */
         }
         .pdf-container {
             display: flex;
             align-items: center;
             justify-content: center;
             height: 100%;
+            width: 100vw; /* Assure que le conteneur occupe toute la largeur de la vue */
         }
         .pdf-viewer {
-            width: 100%; /* Occupe toute la largeur de l'écran */
-            height: 100vh; /* Occupe toute la hauteur de l'écran */
-            transform: scale(1); /* Réinitialise l'échelle du fichier PDF */
-            transform-origin: top left; /* Définit l'origine de la transformation à gauche en haut */
-        }
-        @media only screen and (max-width: 600px) {
-            .pdf-viewer {
-                width: 100%; /* Occupe toute la largeur de l'écran */
-                height: auto; /* Ajuste automatiquement la hauteur pour les petits écrans */
-            }
+            width: 100%; /* Occupe toute la largeur du conteneur */
+            height: 100vh; /* Occupe toute la hauteur de la vue */
+            border: none; /* Supprime la bordure autour de l'iframe */
         }
     </style>
-    <script>
-        function resizeIframe() {
-            var iframe = document.querySelector('.pdf-viewer');
-            iframe.style.width = window.innerWidth + 'px';
-            iframe.style.height = window.innerHeight + 'px';
-        }
-        window.addEventListener('resize', resizeIframe);
-        window.addEventListener('load', resizeIframe);
-    </script>
 </head>
 <body>
     <div class="pdf-container">
         <iframe src="Jauffret_Robin_CV--.pdf" type="application/pdf" class="pdf-viewer"></iframe>
     </div>
+    <script>
+        function resizeIframe() {
+            var iframe = document.querySelector('.pdf-viewer');
+            // Calcule le ratio d'aspect du PDF et ajuste la hauteur de l'iframe en conséquence
+            var aspectRatio = 1.414; // Ratio d'aspect typique d'un document A4 (peut nécessiter un ajustement selon le document)
+            var newHeight = window.innerWidth * aspectRatio;
+            iframe.style.height = newHeight + 'px';
+        }
+        window.addEventListener('resize', resizeIframe);
+        window.addEventListener('load', resizeIframe);
+    </script>
 </body>
 </html>
