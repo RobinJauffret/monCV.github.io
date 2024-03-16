@@ -1,61 +1,81 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Robin JAUFFRET</title>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.9.359/pdf.min.js"></script>
-<style>
-        body, html {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            overflow: hidden; /* Empêche le défilement de la page entière */
-        }
-        .pdf-container {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100vh; /* Assure que le conteneur occupe toute la hauteur de la vue */
-            width: 100vw; /* Assure que le conteneur occupe toute la largeur de la vue */
-        }
-        .pdf-viewer {
-            width: 100%; /* Occupe toute la largeur du conteneur */
-            height: auto; /* Ajuste automatiquement la hauteur pour conserver le ratio d'aspect */
-            max-height: 100%; /* Assure que la hauteur n'excède pas la hauteur de la fenêtre */
-            border: none; /* Supprime la bordure autour de l'iframe */
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Robin JAUFFRET</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.9.359/pdf.min.js"></script>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+    }
+    .pdf-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      width: 100vw;
+    }
+    .pdf-viewer {
+      width: 100%;
+      height: auto;
+      max-height: 100%;
+      border: none;
+    }
+    /* Styles pour les appareils mobiles tactiles */
+    @media (max-width: 767px) {
+      .pdf-container {
+        height: auto;
+        width: 100%;
+        padding: 10px;
+        box-sizing: border-box;
+      }
+      .pdf-viewer {
+        max-width: 100%;
+        max-height: none;
+        height: auto;
+      }
+    }
+  </style>
 </head>
 <body>
-<div class="pdf-container">
-<canvas id="pdf-canvas" class="pdf-viewer"></canvas>
-</div>
-<script>
-// Chargez le PDF
-        pdfsjsLib.getDocument('Jauffret_Robin_CV--.pdf').promise.then(function(pdf) {
-            // Obtenez la page
-            const page = pdf.getPage(1);
+  <div class="pdf-container">
+    <canvas id="pdf-canvas" class="pdf-viewer"></canvas>
+  </div>
+  <script>
+    // Chargez le PDF
+    const loadingTask = pdfjsLib.getDocument('Jauffret_Robin_CV--.pdf');
+    loadingTask.promise.then(function(pdf) {
+      // Obtenez la page
+      pdf.getPage(1).then(function(page) {
+        const canvas = document.getElementById('pdf-canvas');
+        const context = canvas.getContext('2d');
 
-            const canvas = document.getElementById('pdf-canvas');
-            const context = canvas.getContext('2d');
+        const scale = 1.0;
+        const viewport = page.getViewport(scale);
 
-            const scale = 1.0;
-            const viewport = page.getViewport(scale);
+        canvas.width = viewport.width;
+        canvas.height = viewport.height;
 
-            canvas.width = viewport.width;
-            canvas.height = viewport.height;
-
-            // Dessinez le PDF dans la balise canvas
-            page.render({
-                canvasContext: context,
-                viewport: viewport
-            }).promise.then(function() {
-            // Si le PDF est chargé correctement, on affiche le canvas
-                canvas.style.display = 'block';
+        // Dessinez le PDF dans la balise canvas
+        page.render({
+          canvasContext: context,
+          viewport: viewport
+        }).promise.then(function() {
+          // Si le PDF est chargé correctement, on affiche le canvas
+          canvas.style.display = 'block';
         }).catch(function(error) {
-                console.error('Erreur lors du chargement du PDF:', error);
+          console.error('Erreur lors du rendu du PDF:', error);
         });
-    </script>
+      }).catch(function(error) {
+        console.error('Erreur lors de la récupération de la page du PDF:', error);
+      });
+    }).catch(function(error) {
+      console.error('Erreur lors du chargement du PDF:', error);
+    });
+  </script>
 </body>
 </html>
