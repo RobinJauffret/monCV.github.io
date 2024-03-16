@@ -20,9 +20,9 @@
             width: 100%;
             max-width: 100vw;
             max-height: 100vh;
-            border: 10px solid black; /* Ajoute une bordure noire de 10px autour du fichier PDF */
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-            object-fit: contain;
+            transform: scale(0.9); /* Réduit l'échelle du fichier PDF jusqu'à ce qu'il s'adapte à la largeur de l'écran */
+            transform-origin: top left; /* Définit l'origine de la transformation à gauche en haut */
         }
         @media only screen and (max-width: 600px) {
             .pdf-viewer {
