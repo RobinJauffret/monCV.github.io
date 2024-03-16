@@ -6,44 +6,48 @@
 <title>Robin JAUFFRET</title>
 <style>
 body, html {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-}
-.pdf-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh; /* Assure que le conteneur occupe toute la hauteur de la vue */
-}
-.pdf-viewer {
-   width: calc(100vw - 20px); /* Réduit légèrement la largeur pour éviter tout débordement horizontal */
-   max-width: 100%; /* Limite la largeur à celle du conteneur parent */
-   height: 90vh; /* Ajuste automatiquement la hauteur pour conserver le ratio d'aspect et limite à une hauteur égale à 90% de la vue */
-   border:none; 
-}
-</style>
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden; /* Empêche le défilement de la page entière */
+            scroll-behavior: smooth; /* Ajoute une fluidité au défilement */
+        }
+        .pdf-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh; /* Assure que le conteneur occupe toute la hauteur de la vue */
+            width: 100vw; /* Assure que le conteneur occupe toute la largeur de la vue */
+        }
+        .pdf-viewer {
+            width: 100vw;
+            height: auto;
+            max-height: 100vh;
+            border: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+        @media screen and (max-width: 768px) {
+            .pdf-viewer {
+                width: 100vw; /* Ajuste la largeur du PDF sur les appareils mobiles */
+                height: 90vh; /* Ajuste la hauteur du PDF sur les appareils mobiles */
+            }
+        }
+    </style>
 </head>
 <body>
 <div class="pdf-container">
-<iframe src="Jauffret_Robin_CV--.pdf" type="application/pdf" class="pdf-viewer"></iframe>
+<iframe src="Jauffret_Robin_CV--.pdf" type="application/pdf" class="pdf-viewer" width="100vw" height="100vh"></iframe>
 </div>
-
 <script>
-
 function adjustIframeHeight() {
-        var iframe = document.querySelector('.pdf-viewer');
-        var containerHeight = window.innerHeight * 0.9; // utilise directement une proportion fixe (90%) au lieu de lire depuis l'élément parent
-        iframe.style.height = containerHeight + 'px';
-}
-
-window.addEventListener('resize', adjustIframeHeight);
-window.addEventListener('load', adjustIframeHeight);
-
-// Exécutez également cette fonction lorsqu'il y a un changement d'orientation sur les appareils mobiles :
-window.addEventListener("orientationchange", function() {
-       setTimeout(adjustIframeHeight,500); // ajoute un léger délai pour s'assurer que l'affichage est correct après le changement.
-});
-</script>
-
+            var iframe = document.querySelector('.pdf-viewer');
+            var containerHeight = iframe.parentElement.clientHeight;
+            iframe.style.height = containerHeight + 'px';
+        }
+        window.addEventListener('resize', adjustIframeHeight);
+        window.addEventListener('load', adjustIframeHeight);
+    </script>
 </body>
+</html>
