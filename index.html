@@ -10,6 +10,7 @@ body, html {
             padding: 0;
             height: 100%;
             overflow: hidden; /* Empêche le défilement de la page entière */
+            scroll-behavior: smooth; /* Ajoute une fluidité au défilement */
         }
         .pdf-container {
             display: flex;
@@ -22,8 +23,6 @@ body, html {
             width: 100%; /* Occupe toute la largeur du conteneur */
             height: auto; /* Ajuste automatiquement la hauteur pour conserver le ratio d'aspect */
             max-height: none; /* Permet au PDF d'occuper toute la hauteur disponible */
-            border: none; /* Supprime la bordure autour de l'iframe */
-            touch-action: none; /* Empêche le défilement horizontal lors du défilement vertical sur les appareils tactiles */
         }
     </style>
 </head>
