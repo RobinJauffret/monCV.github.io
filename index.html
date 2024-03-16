@@ -9,21 +9,27 @@ body, html {
             margin: 0;
             padding: 0;
             height: 100%;
-            overflow: auto; /* Permet le défilement de la page si nécessaire */
+            overflow: hidden; /* Empêche le défilement de la page entière */
             scroll-behavior: smooth; /* Ajoute une fluidité au défilement */
         }
         .pdf-container {
             display: flex;
-            flex-direction: column; /* Permet au conteneur de s'adapter à la largeur de l'écran */
             align-items: center;
             justify-content: center;
             height: 100vh; /* Assure que le conteneur occupe toute la hauteur de la vue */
+            width: 100vw; /* Assure que le conteneur occupe toute la largeur de la vue */
         }
         .pdf-viewer {
-            max-width: 100%; /* Occupe au maximum la largeur du conteneur */
-            width: auto; /* Ajuste automatiquement la largeur en fonction du PDF */
+            width: 100%; /* Occupe toute la largeur du conteneur */
             height: auto; /* Ajuste automatiquement la hauteur pour conserver le ratio d'aspect */
+            max-height: none; /* Permet au PDF d'occuper toute la hauteur disponible */
             border: none; /* Supprime la bordure autour de l'iframe */
+        }
+        @media screen and (max-width: 768px) {
+            .pdf-viewer {
+                width: 90vw; /* Ajuste la largeur du PDF sur les appareils mobiles */
+                height: 90vh; /* Ajuste la hauteur du PDF sur les appareils mobiles */
+            }
         }
     </style>
 </head>
