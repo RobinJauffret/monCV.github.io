@@ -1,65 +1,73 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Robin JAUFFRET</title>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.9.359/pdf.min.js"></script>
-  <style>
-    body, html {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      overflow: hidden; /* Empêche le défilement de la page entière */
-    }
-    .pdf-container {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100vh; /* Assure que le conteneur occupe toute la hauteur de la vue */
-      width: 100vw; /* Assure que le conteneur occupe toute la largeur de la vue */
-    }
-    .pdf-viewer {
-      width: 100%; /* Occupe toute la largeur du conteneur */
-      height: auto; /* Ajuste automatiquement la hauteur pour conserver le ratio d'aspect */
-      max-height: 100%; /* Assure que la hauteur n'excède pas la hauteur de la fenêtre */
-      border: none; /* Supprime la bordure autour de l'iframe */
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Robin JAUFFRET</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.6.347/pdf.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
+<style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden; /* Empêche le défilement de la page entière */
+        }
+        .pdf-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh; /* Assure que le conteneur occupe toute la hauteur de la vue */
+            width: 100vw; /* Assure que le conteneur occupe toute la largeur de la vue */
+        }
+        .pdf-viewer {
+            width: 100%; /* Occupe toute la largeur du conteneur */
+            height: auto; /* Ajuste automatiquement la hauteur pour conserver le ratio d'aspect */
+            max-height: 100%; /* Assure que la hauteur n'excède pas la hauteur de la fenêtre */
+            border: none; /* Supprime la bordure autour de l'iframe */
+        }
+    </style>
 </head>
 <body>
-  <div class="pdf-container">
-    <canvas id="pdf-canvas" class="pdf-viewer"></canvas>
-  </div>
-  <script>
-    // Chargez le PDF
-    const url = 'https://github.com/RobinJauffret/robinjauffret.github.io/raw/main/Jauffret_Robin_CV--.pdf';
-    pdfjsLib.getDocument(url).promise.then(function(pdf) {
-      // Obtenez la page
-      const page = pdf.getPage(1);
-
-      const canvas = document.getElementById('pdf-canvas');
-      const context = canvas.getContext('2d');
-
-      const scale = 1.0;
-      const viewport = page.getViewport(scale);
-
-      canvas.width = viewport.width;
-      canvas.height = viewport.height;
-
-      // Dessinez le PDF dans la balise canvas
-      page.render({
-        canvasContext: context,
-        viewport: viewport
-      }).promise.then(function() {
-        // Si le PDF est chargé correctement, on affiche le canvas
-        canvas.style.display = 'block';
-      }).catch(function(error) {
-        console.error('Erreur lors du chargement du PDF:', error);
-      });
-    }).catch(function(error) {
-      console.error('Erreur lors du chargement du PDF:', error);
+<div class="pdf-container">
+<canvas id="pdf-canvas" class="pdf-viewer"></canvas>
+</div>
+<script>
+// Chargez le PDF
+const loadingTask = pdfjsLib.getDocument('Jauffret_Robin_CV--.pdf');
+loadingTask.promise.then(function(pdf) {
+  const numPages = pdf.numPages;
+  const pageNumber = 1;
+  // Obtenez la page
+  pdf.getPage(pageNumber).then(function(page) {
+    const canvas = document.getElementById('pdf-canvas');
+    const context = canvas.getContext('2d');
+    const viewport = page.getViewport({scale: 1});
+    // Définissez la taille de la toile
+    canvas.height = viewport.height;
+    canvas.width = viewport.width;
+    // Dessinez le PDF dans la balise canvas
+    const renderContext = {
+      canvasContext: context,
+      viewport: viewport
+    };
+    page.render(renderContext);
+    // Ajoutez les gestes multi-touch
+    const hammer = new Hammer(canvas);
+    hammer.get('pan').set({ direction: Hammer.DIRECTION_ALL });
+    hammer.on('pan', function(event) {
+      const deltaX = event.deltaX;
+      const deltaY = event.deltaY;
+      // Déplacez la toile en fonction du déplacement du doigt
+      const newLeft = viewport.x + deltaX;
+      const newTop = viewport.y + deltaY;
+      viewport.x = newLeft;
+      viewport.y = newTop;
+      canvas.style.left = -newLeft + 'px';
+      canvas.style.top = -newTop + 'px';
     });
-  </script>
+  });
+});
+</script>
 </body>
 </html>
