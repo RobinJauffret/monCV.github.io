@@ -33,7 +33,7 @@
 </div>
 <script>
 // Chargez le PDF
-        pdfsjsLib.getDocument('Jauffret_Robin_CV--.pdf').promise.then(function(pdf) {
+        pdfsjsLib.getDocument('/path/to/Jauffret_Robin_CV--.pdf').promise.then(function(pdf) {
             // Obtenez la page
             const page = pdf.getPage(1);
 
