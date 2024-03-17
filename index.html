@@ -19,18 +19,23 @@
             width: 100%;
             height: 100%;
             border: none;
-            object-fit: contain;
-        }
-        @media screen and (max-width: 768px) {
-            #pdf-container {
-                max-height: 100%;
-            }
         }
     </style>
+    <script>
+        function isMobileDevice() {
+            return (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1);
+        };
+
+        function setPDFViewerSource() {
+            var pdfViewer = document.getElementById("pdf-viewer");
+            var pdfViewMode = isMobileDevice() ? "FitR" : "FitH";
+            pdfViewer.src = "CV.pdf#view=" + pdfViewMode;
+        }
+    </script>
 </head>
-<body>
+<body onload="setPDFViewerSource()">
     <div id="pdf-container">
-        <iframe id="pdf-viewer" src="CV.pdf#view=FitH" seamless></iframe>
+        <iframe id="pdf-viewer" seamless></iframe>
     </div>
 </body>
 </html>
