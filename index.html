@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Robin JAUFFRET - CV</title>
+    <title>Affichage PDF</title>
     <style>
         body {
             margin: 0;
             padding: 0;
+            overflow: hidden;
         }
         
         #pdf-container {
@@ -28,14 +29,15 @@
     
     <script>
         // Ajuster la taille du PDF viewer en fonction de la taille de l'écran
-        window.addEventListener('resize', function() {
+        function resizePdfViewer() {
             var pdfViewer = document.getElementById('pdf-viewer');
             pdfViewer.style.height = window.innerHeight + 'px';
             pdfViewer.style.width = window.innerWidth + 'px';
-        });
+        }
         
         // Déclencher l'événement 'resize' pour ajuster la taille initiale
-        window.dispatchEvent(new Event('resize'));
+        window.addEventListener('resize', resizePdfViewer);
+        window.addEventListener('load', resizePdfViewer);
     </script>
 </body>
 </html>
