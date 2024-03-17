@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Affichage PDF</title>
-    <style>
-        body {
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Affichage PDF</title>
+<style>
+body {
             margin: 0;
             padding: 0;
             overflow: hidden;
@@ -22,11 +22,24 @@
             height: 100%;
             border: none;
         }
+
+        /* Nouvelle règle CSS pour les appareils mobiles */
+        @media (max-width: 600px) {
+            #pdf-container {
+                width: 100%;
+                height: auto;
+            }
+
+            #pdf-viewer {
+                width: 100%;
+                height: auto;
+            }
+        }
     </style>
 </head>
 <body>
-    <div id="pdf-container">
-        <iframe id="pdf-viewer" src="Jauffret_Robin_CV--.pdf#view=FitH" seamless></iframe>
-    </div>
+<div id="pdf-container">
+<iframe id="pdf-viewer" src="Jauffret_Robin_CV--.pdf#view=FitH" seamless></iframe>
+</div>
 </body>
 </html>
