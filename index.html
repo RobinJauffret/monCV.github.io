@@ -8,25 +8,34 @@
         body {
             margin: 0;
             padding: 0;
-            overflow: hidden;
         }
-        
+
         #pdf-container {
-            width: 100vw;
+            width: 100%;
             height: 100vh;
             position: relative;
         }
-        
+
         #pdf-viewer {
             width: 100%;
             height: 100%;
             border: none;
         }
+
+        @media screen and (max-width: 768px) {
+            body {
+                overflow: auto;
+            }
+
+            #pdf-container {
+                height: auto;
+            }
+        }
     </style>
 </head>
 <body>
     <div id="pdf-container">
-        <iframe id="pdf-viewer" src="Jauffret_Robin_CV--.pdf#view=FitH" seamless></iframe>
+        <embed id="pdf-viewer" src="Jauffret_Robin_CV--.pdf#view=FitH" type="application/pdf">
     </div>
 </body>
 </html>
