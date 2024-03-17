@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Affichage PDF</title>
-<style>
-body {
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Affichage PDF</title>
+    <style>
+        body {
             margin: 0;
             padding: 0;
             overflow: hidden;
@@ -22,24 +22,31 @@ body {
             height: 100%;
             border: none;
         }
-
-        /* Nouvelle règle CSS pour les appareils mobiles */
-        @media (max-width: 600px) {
-            #pdf-container {
-                width: 100%;
-                height: auto;
-            }
-
-            #pdf-viewer {
-                width: 100%;
-                height: auto;
-            }
-        }
     </style>
+    <script src="https://mozilla.github.io/pdf.js/build/pdf.js"></script>
 </head>
 <body>
-<div id="pdf-container">
-<iframe id="pdf-viewer" src="Jauffret_Robin_CV--.pdf#view=FitH" seamless></iframe>
-</div>
+    <div id="pdf-container">
+        <canvas id="pdf-viewer"></canvas>
+    </div>
+    <script>
+        var url = 'https://robinjauffret.github.io/Jauffret_Robin_CV--.pdf';
+        var pdfViewer = document.getElementById('pdf-viewer');
+        var loadingTask = pdfjsLib.getDocument(url);
+        loadingTask.promise.then(function(pdf) {
+            pdf.getPage(1).then(function(page) {
+                var scale = 1.5;
+                var viewport = page.getViewport({scale: scale});
+                var context = pdfViewer.getContext('2d');
+                pdfViewer.height = viewport.height;
+                pdfViewer.width = viewport.width;
+                var renderContext = {
+                    canvasContext: context,
+                    viewport: viewport
+                };
+                page.render(renderContext);
+            });
+        });
+    </script>
 </body>
 </html>
