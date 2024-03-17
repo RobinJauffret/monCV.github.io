@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Affichage PDF</title>
     <style>
         body {
@@ -10,28 +10,26 @@
             padding: 0;
             overflow: hidden;
         }
-
+        
         #pdf-container {
             width: 100vw;
             height: 100vh;
             position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
-
+        
         #pdf-viewer {
             width: 100%;
             height: 100%;
             border: none;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: auto;
-            -webkit-overflow-scrolling: touch;
+            max-width: 800px;
         }
-
-        @media screen and (max-width: 768px) {
+        @media (max-width: 768px) {
             #pdf-viewer {
-                min-width: 100%;
-                min-height: 100%;
+                width: 100%;
+                height: auto;
             }
         }
     </style>
