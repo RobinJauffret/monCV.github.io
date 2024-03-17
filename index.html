@@ -37,6 +37,8 @@
     @media only screen and (min-width: 768px) and (max-width: 1024px) {
       .pdf-viewer {
         /* Styles spécifiques aux tablettes */
+        width: 90%;
+        height: 90%;
       }
     }
 
@@ -44,6 +46,8 @@
     @media only screen and (max-width: 767px) {
       .pdf-viewer {
         /* Styles spécifiques aux smartphones */
+        width: 100%;
+        height: calc(100vh - 20px); /* Déduit la hauteur des barres de navigation du mobile */
       }
     }
   </style>
@@ -56,4 +60,3 @@
   </div>
 </body>
 </html>
-
