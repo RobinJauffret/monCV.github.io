@@ -1,57 +1,35 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Robin Jauffret - CV</title>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.6.347/pdf.min.js"></script>
 <style>
 body {
-      margin: 0;
-      padding: 0;
-      background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+}
+
+iframe {
+    width: 100%;
+    max-width: 960px;
+    height: 100vh;
+    border: none;
+}
+
+@media screen and (max-width: 768px) {
+    iframe {
+        height: auto;
     }
-    .pdf-container {
-      width: 100%;
-      height: 100vh;
-      overflow: auto;
-    }
-    #pdf-canvas {
-      width: 100%;
-      height: 100%;
-    }
-  </style>
+}
+</style>
 </head>
 <body>
-<div class="pdf-container">
-<canvas id="pdf-canvas"></canvas>
-</div>
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-      const url = 'https://robinjauffret.github.io/Jauffret_Robin_CV--.pdf';
-      const pdfjsLib = window['pdfjs-dist/build/pdf'];
-
-      pdfjsLib.getDocument(url).promise.then(function (pdf) {
-        const pageNumber = 1;
-        const scale = 1.0;
-        const viewport = pdf.getPage(pageNumber).getViewport(scale);
-
-        const canvas = document.querySelector('#pdf-canvas');
-        const context = canvas.getContext('2d');
-
-        canvas.height = viewport.height;
-        canvas.width = viewport.width;
-
-        pdf.getPage(pageNumber).then(function (page) {
-          const renderContext = {
-            canvasContext: context,
-            viewport: viewport
-          };
-
-          page.render(renderContext);
-        });
-      });
-    });
-  </script>
+<iframe src="https://robinjauffret.github.io/Jauffret_Robin_CV--.pdf" width="100%" height="100%"></iframe>
 </body>
 </html>
