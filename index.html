@@ -14,30 +14,19 @@
         #pdf-container {
             width: 100vw;
             height: 100vh;
+            position: relative;
         }
         
         #pdf-viewer {
             width: 100%;
             height: 100%;
+            border: none;
         }
     </style>
 </head>
 <body>
     <div id="pdf-container">
-        <object id="pdf-viewer" type="application/pdf" data="Jauffret_Robin_CV--.pdf"></object>
+        <iframe id="pdf-viewer" src="Jauffret_Robin_CV--.pdf"></iframe>
     </div>
-    
-    <script>
-        // Ajuster la taille du PDF viewer en fonction de la taille de l'écran
-        function resizePdfViewer() {
-            var pdfViewer = document.getElementById('pdf-viewer');
-            pdfViewer.style.height = window.innerHeight + 'px';
-            pdfViewer.style.width = window.innerWidth + 'px';
-        }
-        
-        // Déclencher l'événement 'resize' pour ajuster la taille initiale
-        window.addEventListener('resize', resizePdfViewer);
-        window.addEventListener('load', resizePdfViewer);
-    </script>
 </body>
 </html>
