@@ -33,32 +33,21 @@
       overflow: hidden; /* Masque le contenu dépassant de l'iframe */
     }
 
-    /* Bouton de zoom */
-    #zoom-out-button {
-      position: fixed;
-      bottom: 10px;
-      right: 10px;
-      z-index: 1000;
-      background-color: #007bff;
-      color: white;
-      padding: 5px 10px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-
     /* Media query pour les tablettes */
     @media only screen and (min-width: 768px) and (max-width: 1024px) {
       .pdf-viewer {
         /* Styles spécifiques aux tablettes */
+        width: 90%;
+        height: 90%;
       }
     }
 
-    /* Media query pour les smartphones en format portrait */
-    @media only screen and (max-width: 767px) and (orientation: portrait) {
+    /* Media query pour les smartphones */
+    @media only screen and (max-width: 767px) {
       .pdf-viewer {
+        /* Styles spécifiques aux smartphones */
         width: 100%;
-        height: auto; /* Ajuste automatiquement la hauteur en fonction de la largeur */
+        height: calc(100vh - 20px); /* Déduit la hauteur des barres de navigation du mobile */
       }
     }
   </style>
@@ -69,18 +58,5 @@
     <!-- Iframe contenant le fichier PDF -->
     <iframe src="Jauffret_Robin_CV--.pdf" type="application/pdf" class="pdf-viewer"></iframe>
   </div>
-
-  <!-- Bouton de zoom -->
-  <button id="zoom-out-button">Dézoomer</button>
-
-  <script>
-    document.getElementById('zoom-out-button').addEventListener('click', function() {
-      var iframe = document.querySelector('.pdf-viewer');
-      var currentScale = parseFloat(iframe.style.transform.split('(')[1].split(')')[0]);
-      var newScale = currentScale * 0.9; // Réduit le zoom de 10% à chaque clic
-
-      iframe.style.transform = 'scale(' + newScale + ')';
-    });
-  </script>
 </body>
 </html>
